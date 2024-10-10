@@ -1,0 +1,44 @@
+
+//javascript code in appscript of the spreadsheet that can open from spreadsheet extention
+
+var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/152iw_ojlFihE9R_odHqBrovdUx52IgXu0ZyduLzxsy8/edit?gid=0#gid=0")
+
+var sheet = ss.getSheetByName('Infosheet')
+
+function doPost(e){
+  var action = e.parameter.action
+
+  if(action == 'addItem'){
+    return addItem(e)
+  }
+}
+
+function addItem(e){
+
+  //we can add here date also: var date = new Date();
+
+  //var id = "Infosheet"+sheet.getLastRow() we can generate id by itself also
+
+  var name = e.parameter.name
+  var address = e.parameter.address
+
+  sheet.appendRow([name,address])
+
+  return ContentService.createTextOutput("success").setMimeType(ContentService.MimeType.TEXT);
+
+}
+
+#############################################################################################################################################
+
+then i have to deploy form app script:
+deploy->new deployment->select type->then settings like gmail then i will get a link
+then i will get a link that link i will paste in my app url variable
+i will set access anyone with the link.
+
+var sheet = ss.getSheetByName('Infosheet')
+
+here the info name is the name of my created spreadsheet.
+
+#############################################################################################################################################
+
+    volly api dependency:implementation("com.android.volley:volley:1.2.1")
